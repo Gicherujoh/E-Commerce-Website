@@ -7,6 +7,11 @@
     justify-content: space-between;
     align-items: center;
 }
+.auth{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
 .img{
  width:120px;
  height: 100px;
@@ -25,4 +30,14 @@
 .product-image{
     width: 100px;
     height: 100px;
+}
+.nav-title{
+    color: white;
+    padding-left: 7px;
+}
+.nav-user{
+    color: black;
+    margin-top: 12px;
+    font-weight: bold;
+    font-style: italic;
 }
