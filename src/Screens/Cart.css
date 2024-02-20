@@ -13,6 +13,10 @@
     left: 0;
     padding: 2px;
 }
+.input{
+   padding-top: 0px;
+    width:110px;
+}
 .icon-remove{
     margin: 2px;
     color: red;
@@ -32,6 +36,15 @@
     font-weight: bold;
     color: lightgrey;
 }
+.items-total{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 60%; 
+}
+.chevrop-up{
+    width: 10px;
+    height: 10px;
+}
 .shopping-button{
   margin-left: 150px;
 }
@@ -41,4 +54,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.amount-total{
+    font-weight: bolder;
 }

@@ -9,22 +9,26 @@ import {useNavigate} from 'react-router-dom'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import {useSelector,useDispatch} from 'react-redux'
 
-import { addTocart,ClearCart,RemoveProduct } from '../Redux/ProductSlice';
+import { addTocart,ClearCart,RemoveProduct,calculateTotal} from '../Redux/ProductSlice';
 import './Cart.css';
 import axios from 'axios';
 import { UserContext } from '../Context/UserContext';
 const Cart = () => {
-   
+    const[items,setItems]=useState(0)
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [clearcart,setClearCart] = useState(true)
-    const { product } = useSelector(state => state.products);
-    const {user}= useContext(UserContext)
+    const { product,amount } = useSelector(state => state.products);
+    const { user } = useContext(UserContext)
+    useEffect(() => {
+        dispatch(calculateTotal());
+    },[product])
     const ContinueShopping = () => {
          navigate('/')
     }
    
-
+    console.log(product)
+    console.log(items)
     const CheckOut = () => {
         if (user) {
             navigate('/checkout')  
@@ -39,6 +43,8 @@ const Cart = () => {
     const RemoveItem = (id) => {
          dispatch(RemoveProduct(id))
     }
+    
+    console.log(product)
     if (product.length === 0) {
         return (            
                 <div className='empty-cart'>
@@ -54,7 +60,7 @@ const Cart = () => {
           { !clearcart ?(<h2 className='text-center'>Your Cart is empty</h2>):!product ? (<Spinner animation="border" role='status'><span className="visually-hidden">Loading...</span></Spinner>) : (
                     product?.map((items) => (
                  
-          <Row className='align-items-center  bg-lightgrey position-relative shadow'>      
+          <Row className='align-items-center  bg-lightgrey  position-relative shadow'>      
               <Col>  
          <div className="cart-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="25" height="25" className='icon-remove' onClick={()=>RemoveItem(items?.id)}>
@@ -67,20 +73,19 @@ const Cart = () => {
               <Col>
                   <p className='cart-title'>{items?.title.length > 20 ? `${items?.title.substring(0, 20)}...` : items?.title}</p>
               </Col>
-              <Col>
-                   <DropdownButton id="dropdown-basic-button" title="Quantity" variant='lightgrey' onChange={()=>setButton(1)}>
-                  <Dropdown.Item href="#/action-1">1</Dropdown.Item>
-                 <Dropdown.Item href="#/action-2">2</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">3</Dropdown.Item>
-              </DropdownButton>
-              </Col>
+    
               <Col>
                   <p className='cart-subtotal'>Subtotal</p>
-                  <p className='cart-price'>${items?.price}</p>
+                  <p className='cart-price'>Ksh:{items?.price}</p>
               </Col>
-                     
           </Row>
-                      )))}
+                    )))}
+             <Row className='items-total'>
+                <Col>
+                  <h5>Total:Ksh <span className='amount-total'>{amount }</span></h5>
+                </Col>
+
+                </Row>
           <Row className='mt-5'>
               <Col className='text-center'>
                    <Button variant='danger' onClick={clearCart}>Clear Cart</Button>

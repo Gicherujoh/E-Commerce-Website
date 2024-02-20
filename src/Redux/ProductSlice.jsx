@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {useState,useContext} from 'react'
 import { productItems} from '../Product'
+import {produce} from 'immer'
 
 // Create your product slice
 const initialState = {
@@ -28,8 +29,15 @@ const productSlice = createSlice({
         RemoveProduct(state,action){
             state.product = state.product.filter(item => item.id !== action.payload);
             
+        },
+        calculateTotal(state) {
+            let total =0
+            state.product.forEach((item) => {
+                total+=item.price
+            })
+            state.amount = total;
         }
     }
 })
-export const {addTocart,ClearCart,RemoveProduct} = productSlice.actions
+export const {addTocart,ClearCart,RemoveProduct,calculateTotal} = productSlice.actions
 export default productSlice.reducer;
