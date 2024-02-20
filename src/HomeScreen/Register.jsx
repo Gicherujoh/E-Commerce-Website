@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { useForm } from 'react-hook-form';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
 import * as yup from 'yup';
 import axios from 'axios';
 import {yupResolver} from '@hookform/resolvers/yup';
@@ -84,7 +84,11 @@ const Register = () => {
         </Form.Group>
         <p className='main__errors'>{errors.confir && 'is a required field and should match'}</p>
         <div className='text-center form-button'>
-           <Button variant='success' className='form-button text-center mt-2' onClick={handleSubmit(HandleSubmit)}>Register</Button>
+          <Button variant='success' className='form-button text-center mt-2' onClick={handleSubmit(HandleSubmit)}>Register</Button>
+          <div className='login-account'>
+            <p>Have an account?</p>
+            <Link to='/login' className='login-link'>Login</Link>
+          </div>
         </div>
         
       </Form>

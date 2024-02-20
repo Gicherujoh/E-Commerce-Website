@@ -9,7 +9,7 @@ import {useNavigate} from 'react-router-dom'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import {useSelector,useDispatch} from 'react-redux'
 
-import { addTocart,ClearCart } from '../Redux/ProductSlice';
+import { addTocart,ClearCart,RemoveProduct } from '../Redux/ProductSlice';
 import './Cart.css';
 import axios from 'axios';
 import { UserContext } from '../Context/UserContext';
@@ -23,6 +23,7 @@ const Cart = () => {
     const ContinueShopping = () => {
          navigate('/')
     }
+   
 
     const CheckOut = () => {
         if (user) {
@@ -35,17 +36,27 @@ const Cart = () => {
         dispatch(ClearCart())
         setClearCart(false)
     }
-    
+    const RemoveItem = (id) => {
+         dispatch(RemoveProduct(id))
+    }
+    if (product.length === 0) {
+        return (            
+                <div className='empty-cart'>
+                <h2 className='mb-4'>Your Cart is Empty</h2>
+                <div>
+                     <Button variant='dark'  onClick={ContinueShopping}>Continue Shopping</Button>
+                    </div>
+                </div>
+        )
+    }
   return (
       <Container className='mt-5'>
           { !clearcart ?(<h2 className='text-center'>Your Cart is empty</h2>):!product ? (<Spinner animation="border" role='status'><span className="visually-hidden">Loading...</span></Spinner>) : (
                     product?.map((items) => (
                  
-          <Row className='align-items-center  bg-lightgrey position-relative shadow'>
-              
-              <Col>
-                  
-                          <div className="cart-icon">
+          <Row className='align-items-center  bg-lightgrey position-relative shadow'>      
+              <Col>  
+         <div className="cart-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="25" height="25" className='icon-remove' onClick={()=>RemoveItem(items?.id)}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
@@ -84,7 +95,6 @@ const Cart = () => {
               </Col>
             
           </Row>
-
     </Container>
   )
 }

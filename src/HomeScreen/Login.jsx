@@ -8,6 +8,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form';
+import {Link} from 'react-router-dom'
 import { UserContext } from '../Context/UserContext';
 import './Login.css';
 
@@ -69,7 +70,11 @@ const Login = () => {
         </Form.Group>
         <p className='main__errors'>{errors.setPassword && 'Enter a valid password'}</p>
         <div className='text-center form-button'>
-           <Button variant='success' className='form-button text-center mt-2' onClick={handleSubmit(HandleSubmit)}>Login</Button>
+          <Button variant='success' className='form-button text-center mt-2' onClick={handleSubmit(HandleSubmit)}>Login</Button>
+          <div className='login-account'>
+            <p>Dont have an account?</p>
+            <Link to='/register' className='login-link'>Register</Link>
+          </div>
         </div>
        </Form>
     </Container>
