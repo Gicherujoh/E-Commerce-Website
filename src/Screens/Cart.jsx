@@ -8,10 +8,10 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import {useNavigate} from 'react-router-dom'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import {useSelector,useDispatch} from 'react-redux'
-
+import axios from 'axios';
 import { addTocart,ClearCart,RemoveProduct,calculateTotal} from '../Redux/ProductSlice';
 import './Cart.css';
-import axios from 'axios';
+
 import { UserContext } from '../Context/UserContext';
 const Cart = () => {
     const[items,setItems]=useState(0)
@@ -29,9 +29,19 @@ const Cart = () => {
    
     console.log(product)
     console.log(items)
-    const CheckOut = () => {
-        if (user) {
-            navigate('/checkout')  
+    const CheckOut = async() => {
+        if (user && product.length!==0) {
+            try {
+                const res = await axios.post('http://localhost:3770/cart-data', {
+                    total: amount,
+                    products:product
+                })
+                if (res.data.total) {
+                    navigate('/checkout')
+                }
+            } catch (err) {
+                console.log(err)
+            }
         } else {
             navigate('/register')
           }

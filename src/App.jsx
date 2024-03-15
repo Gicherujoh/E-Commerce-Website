@@ -12,6 +12,7 @@ import Login from './HomeScreen/Login';
 import CheckOut from './Screens/CheckOut';
 import { UserContext } from './Context/UserContext';
 import { ProductContext } from './Context/ProductContext'
+import MpesaForm from './Screens/MpesaForm';
 function App() {
   const [product, setProduct] = useState(null);
    const [user,setUser]= useState(null)
@@ -26,7 +27,8 @@ function App() {
             <Route path='login' element={ <Login/>} />
             <Route path='product' element={<Product />} />
             <Route path='cart' element={<Cart />} />
-            <Route path='checkout' element={ <CheckOut/>} />
+              <Route path='checkout' element={<CheckOut />} />
+              <Route path='mpesaform' element={ <MpesaForm/>} />
         </Route>
       </Routes>
     </BrowserRouter>

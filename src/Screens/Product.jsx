@@ -24,7 +24,7 @@ const Cart = () => {
 <Container className='mt-5 justify-content-center align-items-center'>
   <Container>
   
-      <Row key={product?.id}> {/* Make sure to provide a unique key */}
+      <Row key={product?.id}> 
         <img src={product?.image} className='product-image' alt={product?.name} />
         <Col>
           <h3>{product?.name}</h3>
@@ -39,7 +39,7 @@ const Cart = () => {
         </Col>
       </Row>
   </Container>
-  <Container>{/* Add additional content if needed */}</Container>
+
 </Container>
   )
 }

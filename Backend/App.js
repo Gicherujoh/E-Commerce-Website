@@ -60,4 +60,21 @@ app.post('/login', async (req, res) => {
       return res.json(e)
     }
 })
-
+//Importing the Cart Model
+const Cart = require('./Models/Cart')
+app.post('/cart-data', async (req, res) => {
+   const { total, products } = req.body;
+   try {
+      const productData = await Cart.create({
+         products,
+         total
+      })
+      if (productData) {
+         return res.json(productData)
+      } else {
+         res.json('Failed to save to MongoDB')
+      }
+   } catch (error) {
+     return res.json(error)
+   }
+})
