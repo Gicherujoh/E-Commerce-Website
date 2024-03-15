@@ -12,7 +12,7 @@ app.use(cors({
    credentials:true
 }))
 //Establishing Connnection To MongoDB
-mongoose.connect(process.env.Connection_String).then(() => {
+mongoose.connect('mongodb+srv://johnwambugu236:MPbBH2nE4FoebhLY@cluster0.a4bysmk.mongodb.net/',{ useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
    console.log('Connected Successfully to MongoDB')
    app.listen(3770, () => console.log('Server Runing on port 3770'))
 }).catch((e) => console.log(e));
