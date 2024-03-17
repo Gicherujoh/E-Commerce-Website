@@ -83,13 +83,13 @@ const Register = () => {
           <Form.Control type="password" placeholder="e.g Johndoe123" autocomplete='off'  name='confirmPassword' {...register('confirmPassword')} onChange={(e)=>setConfirmPassword(e.target.value)} />
         </Form.Group>
         <p className='main__errors'>{errors.confir && 'is a required field and should match'}</p>
-        <div className='text-center form-button'>
+        <Row className='text-center'>
           <Button variant='success' className='form-button text-center mt-2' onClick={handleSubmit(HandleSubmit)}>Register</Button>
-          <div className='login-account'>
+          <Row className='text-center mt-2'>
             <p>Have an account?</p>
-            <Link to='/login' className='login-link'>Login</Link>
-          </div>
-        </div>
+            <Link to='/login' className=' text-center'>Login</Link>
+          </Row>
+        </Row>
         
       </Form>
     </Container>

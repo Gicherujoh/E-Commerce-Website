@@ -12,10 +12,7 @@
 .font-weight-bold {
     font-weight: bold;
 }
-.form-button{
-    width: 100px;
-    margin-left: 100px;
-}
+
 .main__errors{
     color: red;
 }
