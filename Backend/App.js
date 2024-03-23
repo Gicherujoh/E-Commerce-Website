@@ -13,6 +13,9 @@ app.use(cors({
    origin: 'https://e-commerce-frontend-zn4g.vercel.app',
    credentials:true
 }))
+app.get('/', (req, res) => {
+   res.json('Hello')
+})
 //Establishing Connnection To MongoDB
 mongoose.connect('mongodb+srv://johnwambugu236:MPbBH2nE4FoebhLY@cluster0.a4bysmk.mongodb.net/').then(() => {
    console.log('Connected Successfully to MongoDB')
