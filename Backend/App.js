@@ -10,7 +10,7 @@ require('dotenv').config();
 //Setting Up MiddleWares
 app.use(express.json());
 app.use(cors({
-   origin: 'http://localhost:5173',
+   origin: 'https://e-commerce-frontend-zn4g.vercel.app',
    credentials:true
 }))
 //Establishing Connnection To MongoDB
