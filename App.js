@@ -22,7 +22,7 @@ mongoose.connect('mongodb+srv://johnwambugu236:MPbBH2nE4FoebhLY@cluster0.a4bysmk
    app.listen(3770, () => console.log('Server Runing on port 3770'))
 }).catch((e) => console.log(e));
 
-const User = require('./Models/User');
+const User = require('./Backend/Models/User');
 app.post('/register', async (req, res) => {
    const {name,setPassword,email,phone } = req.body;
    try { 
@@ -66,7 +66,7 @@ app.post('/login', async (req, res) => {
     }
 })
 //Importing the Cart Model
-const Cart = require('./Models/Cart')
+const Cart = require('./Backend/Models/Cart')
 app.post('/cart-data', async (req, res) => {
    const { total, products } = req.body;
    try {
@@ -151,7 +151,7 @@ app.post('/stk',GenerateToken, async (req, res) => {
     });
 })
 //Saving Results from Mpesa Callback to MongoDB
-const Payment = require('./Models/Mpesa')
+const Payment = require('./Backend/Models/Mpesa')
 app.post('/callback', async(req, res) => {
    const result = req.body;
    console.log(result)
