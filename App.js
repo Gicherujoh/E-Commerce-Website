@@ -10,7 +10,7 @@ require('dotenv').config();
 //Setting Up MiddleWares
 app.use(express.json());
 app.use(cors({
-   origin: 'https://e-commerce-frontend-eorn-7oks08nc0-gicherujohs-projects.vercel.app',
+   origin: 'https://e-commerce-frontend-eorn.vercel.app',
    credentials:true
 }))
 app.get('/', (req, res) => {
