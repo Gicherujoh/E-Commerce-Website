@@ -10,7 +10,7 @@ require('dotenv').config();
 //Setting Up MiddleWares
 app.use(express.json());
 app.use(cors({
-   origin: 'https://e-commerce-frontend-zn4g.vercel.app',
+   origin: 'https://e-commerce-frontend-eorn-7oks08nc0-gicherujohs-projects.vercel.app',
    credentials:true
 }))
 app.get('/', (req, res) => {
@@ -131,7 +131,7 @@ app.post('/stk',GenerateToken, async (req, res) => {
     PartyA: `254${phone}`,
     PartyB: 174379,
     PhoneNumber: `254${phone}`,
-    CallBackURL: "https://major-nails-love.loca.lt/callback",
+    CallBackURL: "https://e-commerce-website-20.onrender.com/callback",
     AccountReference: "Mpesa Test",
     TransactionDesc: "Testing stk push",
   };
